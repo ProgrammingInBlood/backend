@@ -11,6 +11,7 @@ import Layout from 'Layouts';
 import { Button } from '@paljs/ui/Button';
 import { Toastr, ToastrRef, ToastrProps } from '@paljs/ui/Toastr';
 import axios from 'axios';
+import { useRouter } from 'next/router';
 
 const options = [
   { value: 'chocolate', label: 'Chocolate' },
@@ -31,6 +32,7 @@ const Input = styled(InputGroup)`
 `;
 
 const InputPage = () => {
+  const router = useRouter();
   const toastrRef = useRef();
   const [count, setCount] = useState(0);
   const [toasterData, setToasterData] = useState({
@@ -465,10 +467,10 @@ const InputPage = () => {
       };
 
       try {
-        await axios.post('/api/products/addproducts', payload).then(async (response) => {
+        await axios.put(`/api/products/update/${router.query.id}`, payload).then(async (response) => {
           console.log(response);
           setCount(count + 1);
-          toastrRef.current?.add('SUCCESS', 'Product Added Successfully', { ...toasterData, status: 'Success' });
+          toastrRef.current?.add('SUCCESS', 'Product Updated Successfully', { ...toasterData, status: 'Success' });
         });
       } catch (err) {
         setCount(count + 1);
@@ -506,6 +508,18 @@ const InputPage = () => {
         <Col breakPoint={{ xs: 12, md: 12 }}>
           <Card>
             <header>Product Type</header>
+            <CardBody style={{ alignItems: 'center' }}>
+              <Row>
+                <Col breakPoint={{ xs: 12, md: 2 }}>
+                  <header>Product ID</header>
+                </Col>
+                <Col breakPoint={{ xs: 12, md: 10 }}>
+                  <Input fullWidth status="Success">
+                    <input type="text" placeholder="Product ID" required value={router.query.id} />
+                  </Input>
+                </Col>
+              </Row>
+            </CardBody>
             <CardBody>
               <Row>
                 <Col breakPoint={{ xs: 12, md: 2 }}>

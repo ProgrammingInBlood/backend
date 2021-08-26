@@ -1,14 +1,11 @@
 import React from 'react';
 import Link from 'next/link';
-import { useRouter } from 'next/router';
 import styled, { DefaultTheme } from 'styled-components';
 import Select from '@paljs/ui/Select';
 import { LayoutHeader } from '@paljs/ui/Layout';
 import { EvaIcon } from '@paljs/ui/Icon';
 import { Button } from '@paljs/ui/Button';
 import { Actions } from '@paljs/ui/Actions';
-import ContextMenu from '@paljs/ui/ContextMenu';
-import User from '@paljs/ui/User';
 import { breakpointDown } from '@paljs/ui/breakpoints';
 
 const HeaderStyle = styled.div`
@@ -60,7 +57,6 @@ interface HeaderProps {
 }
 
 const Header: React.FC<HeaderProps> = (props) => {
-  const router = useRouter();
   const themeOptions = () => [
     {
       value: 'default',
@@ -141,14 +137,7 @@ const Header: React.FC<HeaderProps> = (props) => {
             },
           ]}
         />
-        <Actions
-          size="Small"
-          className="right"
-          actions={[
-            
-            
-          ]}
-        />
+        <Actions size="Small" className="right" actions={[]} />
       </HeaderStyle>
     </LayoutHeader>
   );

@@ -13,11 +13,15 @@ export default function ButtonPage() {
   const router = useRouter();
   const status = ['Info', 'Success', 'Danger', 'Primary', 'Warning', 'Basic', 'Control'];
   const [products, setProducts] = useState([]);
+  const [page, setPage] = useState(1);
+  const [serverpage, setServerPage] = useState();
 
   useEffect(() => {
     function getProducts() {
-      axios.get(`https://bedsdivanapis.herokuapp.com/ukbeds/?format=json`).then((response) => {
-        setProducts(response.data);
+      axios.get(`/api/products?page=${page}&limit=20`).then((response) => {
+        setProducts(response.data.data);
+        setServerPage(response.data.totalPages);
+        setPage(page + 1);
       });
     }
     getProducts();
@@ -25,8 +29,16 @@ export default function ButtonPage() {
 
   console.log(products);
 
+  const loadNextPage = async () => {
+    axios.get(`/api/products?page=${page}&limit=20`).then((response) => {
+      setProducts([...products, ...response.data.data]);
+      setServerPage(response.data.totalPages);
+      setPage(page + 1);
+    });
+  };
+
   const deleteProduct = (id) => {
-    axios.delete(`https://bedsdivanapis.herokuapp.com/ukbeds/${id}/`).then((response) => {
+    axios.delete(`/api/products/delete/${id}`).then((response) => {
       console.log(response);
       router.reload();
     });
@@ -42,24 +54,30 @@ export default function ButtonPage() {
             products?.map((product) => {
               console.log(product);
               return (
-                <Card key={product.id}>
-                  <header>ID=({product.id})</header>
+                <Card key={product._id}>
+                  <header>ID=({product._id})</header>
                   <CardBody>
-                    <p>Brand : {product.size}</p>
-                    <p>Price : {product.base_price}</p>
-                    <p>Headboard Price : {product.Headboard_Price}</p>
-                    <p>Storage Price : {product.Storage_Price}</p>
-                    <p>Feet price: {product.Feet_Price}</p>
-                    <p>mattresses Price : {product.mattresses_Price}</p>
-                    <p>description: {product.Description}</p>
-                    <p>timestamp: {product.created_at}</p>
+                    <p>Product name: {product.product_name}</p>
+                    <p>Size: {product.size}</p>
+                    <p>Price : {product.price}</p>
+                    <p>description: {product.description}</p>
+                    <p>timestamp: {product.timestamp}</p>
                     <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+                      <Button
+                        fullWidth
+                        appearance="hero"
+                        status="Primary"
+                        style={{ maxWidth: '45%' }}
+                        onClick={() => router.push(`/product/edit?id=${product._id}`)}
+                      >
+                        Edit Product
+                      </Button>
                       <Button
                         fullWidth
                         appearance="hero"
                         status="Danger"
                         style={{ maxWidth: '45%' }}
-                        onClick={() => deleteProduct(product.id)}
+                        onClick={() => deleteProduct(product._id)}
                       >
                         Delete Product
                       </Button>
@@ -70,6 +88,15 @@ export default function ButtonPage() {
             })
           )}
 
+          <Button
+            style={{ display: page <= serverpage ? 'block' : 'none' }}
+            fullWidth
+            appearance="hero"
+            status="Success"
+            onClick={loadNextPage}
+          >
+            Load more products
+          </Button>
           {/* <Card>
             <header>Button Hero</header>
             <CardBody>
