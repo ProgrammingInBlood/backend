@@ -8,7 +8,7 @@ export default async function handler(req, res) {
   if (req.method === 'PUT') {
     // const getProductsByID = await Products.findById(req.query.id);
     const params = await cleanDeep(req.body);
-    await Products.update({ _id: req.query.id }, { $set: params }, { useFindAndModify: false }, function (err, doc) {
+    await Products.update({ _id: req.query.id }, { $unset: params }, { useFindAndModify: false }, function (err, doc) {
       console.log(doc);
       res.json({ data: doc });
     });

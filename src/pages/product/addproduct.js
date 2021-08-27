@@ -42,6 +42,16 @@ const InputPage = () => {
     preventDuplicates: false,
   });
 
+  const [checkbox, setCheckbox] = useState({
+    1: false,
+    2: false,
+    3: false,
+  });
+
+  const onChangeCheckbox = (value, name) => {
+    setCheckbox({ ...checkbox, [name]: value });
+  };
+
   //VARIABLE INITIALIZATION
 
   const [productName, setProductName] = useState('');
@@ -384,6 +394,7 @@ const InputPage = () => {
       console.log(feet);
       console.log(colors);
       const payload = {
+        force_replace: checkbox[1],
         product_name: productName,
         description: productDescription,
         size: size,
@@ -467,12 +478,18 @@ const InputPage = () => {
       try {
         await axios.post('/api/products/addproducts', payload).then(async (response) => {
           console.log(response);
-          setCount(count + 1);
-          toastrRef.current?.add('SUCCESS', 'Product Added Successfully', { ...toasterData, status: 'Success' });
+
+          if (response.data.success) {
+            setCount(count + 1);
+            toastrRef.current?.add('SUCCESS', response.data.data, { ...toasterData, status: 'Success' });
+          } else {
+            setCount(count + 1);
+            toastrRef.current?.add('ERROR', response.data.data, { ...toasterData, status: 'Danger' });
+          }
         });
       } catch (err) {
         setCount(count + 1);
-        toastrRef.current?.add('ERROR', 'Something went Wrong...Try Again', { ...toasterData, status: 'Danger' });
+        toastrRef.current?.add('ERROR', err?.message, { ...toasterData, status: 'Danger' });
       }
     };
 
@@ -485,12 +502,6 @@ const InputPage = () => {
     //   });
     // }
   }
-
-  const [checkbox, setCheckbox] = useState({
-    1: false,
-    2: false,
-    3: false,
-  });
 
   return (
     <Layout title="Input">
@@ -1159,6 +1170,11 @@ const InputPage = () => {
                       />
                     </Input>
                   </Row>
+                </Col>
+                <Col breakPoint={{ xs: 12, sm: 4 }}>
+                  <Checkbox checked={checkbox[1]} status="Success" onChange={(value) => onChangeCheckbox(value, 1)}>
+                    Add new and remove old existing product
+                  </Checkbox>
                 </Col>
               </Row>
               <Button style={{ alignItems: 'center', justifyContent: 'center' }} onClick={addVarient}>
