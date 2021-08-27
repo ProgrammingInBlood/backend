@@ -33,7 +33,7 @@ export default async function handler(req, res) {
 
     form.on('fileBegin', function (name, file) {
       console.log(slugify(file.name));
-      file.path = path.join(`${time}`, slugify(file.name));
+      file.path = path.join(`/staticfiles/${time}`, slugify(file.name));
       paths = `${process.env.BASE_URL}/${time}/${slugify(file.name)}`;
       arrays.push(paths);
     });
