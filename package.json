@@ -38,7 +38,8 @@
     "dev": "next",
     "build": "next build",
     "start": "next start --port ${PORT-3000}",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "prod": "next export"
   },
   "repository": {
     "type": "git",
