@@ -14,7 +14,7 @@ export const config = {
 export default async function handler(req, res) {
   const time = timestamp('DD-MM-YYYY');
 
-  fs.mkdir(`./public/${time}`, { recursive: true }, function (err) {
+  fs.mkdir(`/public`, { recursive: true }, function (err) {
     return console.log(err);
   });
 
@@ -24,7 +24,7 @@ export default async function handler(req, res) {
   const data = await new Promise((resolve, reject) => {
     const form = formidable({
       multiple: true,
-      uploadDir: `./public/${time}`,
+      uploadDir: `/public`,
     });
 
     //KEEP EXTENSION
@@ -33,8 +33,8 @@ export default async function handler(req, res) {
 
     form.on('fileBegin', function (name, file) {
       console.log(slugify(file.name));
-      file.path = path.join(`static/`, slugify(file.name));
-      paths = `${process.env.BASE_URL}/static/${slugify(file.name)}`;
+      file.path = path.join(`public/`, slugify(file.name));
+      paths = `${process.env.BASE_URL}/${slugify(file.name)}`;
       arrays.push(paths);
     });
 
