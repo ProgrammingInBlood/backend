@@ -14,7 +14,7 @@ export const config = {
 export default async (req, res) => {
   const time = timestamp('DD-MM-YYYY');
 
-  fs.mkdir(`./public/${time}`, { recursive: true }, function (err) {
+  fs.mkdir(`./public`, { recursive: true }, function (err) {
     return console.log(err);
   });
 
@@ -24,7 +24,7 @@ export default async (req, res) => {
   await new Promise((resolve, reject) => {
     const form = formidable({
       multiples: true,
-      uploadDir: `/public`,
+      uploadDir: `./public`,
     });
 
     //KEEP EXTENSION
