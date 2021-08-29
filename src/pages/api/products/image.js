@@ -23,8 +23,8 @@ export default async function handler(req, res) {
 
   const data = await new Promise((resolve, reject) => {
     const form = formidable({
-      multiple: true,
-      uploadDir: `./public/${time}`,
+      multiples: true,
+      uploadDir: `/public`,
     });
 
     //KEEP EXTENSION
@@ -33,8 +33,8 @@ export default async function handler(req, res) {
 
     form.on('fileBegin', function (name, file) {
       console.log(slugify(file.name));
-      file.path = path.join(`public/${time}`, slugify(file.name));
-      paths = `${process.env.BASE_URL}/${time}/${slugify(file.name)}`;
+      file.path = path.join(`public`, slugify(file.name));
+      paths = `${process.env.BASE_URL}/${slugify(file.name)}`;
       arrays.push(paths);
     });
 
