@@ -206,7 +206,11 @@ const InputPage = () => {
       data.append('colorImage4', black_crushed_velvet);
 
       try {
-        await axios.post(`/api/products/image`, data).then(async (response) => {
+        await axios(`/api/products/image`, {
+          method: 'POST',
+          data: data,
+          'content-type': 'multipart/form-data',
+        }).then(async (response) => {
           base_colors_images = await response.data;
         });
       } catch (err) {
@@ -222,7 +226,11 @@ const InputPage = () => {
       data.append('storageImage4', black_crushed_velvet_storage);
 
       try {
-        await axios.post(`/api/products/image`, data).then(async (response) => {
+        await axios(`/api/products/image`, {
+          method: 'POST',
+          data: data,
+          'content-type': 'multipart/form-data',
+        }).then(async (response) => {
           storage_images = await response.data;
         });
       } catch (err) {
@@ -237,7 +245,11 @@ const InputPage = () => {
       data.append('storageImage4', black_crushed_velvet_storage1);
 
       try {
-        await axios.post(`/api/products/image`, data).then(async (response) => {
+        await axios(`/api/products/image`, {
+          method: 'POST',
+          data: data,
+          'content-type': 'multipart/form-data',
+        }).then(async (response) => {
           storage_images1 = await response.data;
         });
       } catch (err) {
@@ -252,7 +264,11 @@ const InputPage = () => {
       data.append('storageImage4', black_crushed_velvet_storage2);
 
       try {
-        await axios.post(`/api/products/image`, data).then(async (response) => {
+        await axios(`/api/products/image`, {
+          method: 'POST',
+          data: data,
+          'content-type': 'multipart/form-data',
+        }).then(async (response) => {
           storage_images2 = await response.data;
         });
       } catch (err) {
@@ -267,7 +283,11 @@ const InputPage = () => {
       data.append('storageImage4', black_crushed_velvet_storage3);
 
       try {
-        await axios.post(`/api/products/image`, data).then(async (response) => {
+        await axios(`/api/products/image`, {
+          method: 'POST',
+          data: data,
+          'content-type': 'multipart/form-data',
+        }).then(async (response) => {
           storage_images3 = await response.data;
         });
       } catch (err) {
@@ -283,7 +303,11 @@ const InputPage = () => {
       data.append('mattressImage4', black_crushed_velvet_mattress);
 
       try {
-        await axios.post(`/api/products/image`, data).then(async (response) => (mattress_images = await response.data));
+        await axios(`/api/products/image`, {
+          method: 'POST',
+          data: data,
+          'content-type': 'multipart/form-data',
+        }).then(async (response) => (mattress_images = await response.data));
       } catch (err) {
         console.log(err.message);
       }
@@ -297,9 +321,11 @@ const InputPage = () => {
       data.append('headboardImage4', black_crushed_velvet_headboard);
 
       try {
-        await axios
-          .post(`/api/products/image`, data)
-          .then(async (response) => (headboard_images = await response.data));
+        await axios(`/api/products/image`, {
+          method: 'POST',
+          data: data,
+          'content-type': 'multipart/form-data',
+        }).then(async (response) => (headboard_images = await response.data));
       } catch (err) {
         console.log(err.message);
       }
@@ -312,9 +338,11 @@ const InputPage = () => {
       data.append('headboardImage4', black_crushed_velvet_headboard1);
 
       try {
-        await axios
-          .post(`/api/products/image`, data)
-          .then(async (response) => (headboard_images1 = await response.data));
+        await axios(`/api/products/image`, {
+          method: 'POST',
+          data: data,
+          'content-type': 'multipart/form-data',
+        }).then(async (response) => (headboard_images1 = await response.data));
       } catch (err) {
         console.log(err.message);
       }
@@ -327,9 +355,11 @@ const InputPage = () => {
       data.append('headboardImage4', black_crushed_velvet_headboard2);
 
       try {
-        await axios
-          .post(`/api/products/image`, data)
-          .then(async (response) => (headboard_images2 = await response.data));
+        await axios(`/api/products/image`, {
+          method: 'POST',
+          data: data,
+          'content-type': 'multipart/form-data',
+        }).then(async (response) => (headboard_images2 = await response.data));
       } catch (err) {
         console.log(err.message);
       }
@@ -342,9 +372,11 @@ const InputPage = () => {
       data.append('headboardImage4', black_crushed_velvet_headboard3);
 
       try {
-        await axios
-          .post(`/api/products/image`, data)
-          .then(async (response) => (headboard_images3 = await response.data));
+        await axios(`/api/products/image`, {
+          method: 'POST',
+          data: data,
+          'content-type': 'multipart/form-data',
+        }).then(async (response) => (headboard_images3 = await response.data));
       } catch (err) {
         console.log(err.message);
       }
@@ -358,7 +390,11 @@ const InputPage = () => {
       data.append('feetImage4', black_crushed_velvet_feet);
 
       try {
-        await axios.post(`/api/products/image`, data).then(async (response) => (feet_images = await response.data));
+        await axios(`/api/products/image`, {
+          method: 'POST',
+          data: data,
+          'content-type': 'multipart/form-data',
+        }).then(async (response) => (feet_images = await response.data));
       } catch (err) {
         console.log(err.message);
       }
