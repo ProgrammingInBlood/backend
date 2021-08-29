@@ -11,7 +11,7 @@ export const config = {
   },
 };
 
-export default async function handler(req, res) {
+export default async (req, res) => {
   const time = timestamp('DD-MM-YYYY');
 
   fs.mkdir(`./public/${time}`, { recursive: true }, function (err) {
@@ -21,7 +21,7 @@ export default async function handler(req, res) {
   let paths = '';
   let arrays = [];
 
-  const data = await new Promise((resolve, reject) => {
+  await new Promise((resolve, reject) => {
     const form = formidable({
       multiples: true,
       uploadDir: `/public`,
@@ -45,4 +45,4 @@ export default async function handler(req, res) {
   });
 
   res.status(200).json(arrays);
-}
+};
