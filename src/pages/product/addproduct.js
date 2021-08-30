@@ -200,10 +200,10 @@ const InputPage = () => {
 
     const baseColor = async () => {
       const data = new FormData();
-      data.append('colorImage1', grey_linen);
-      data.append('colorImage2', grey_seude);
-      data.append('colorImage3', charcoal_chenille);
-      data.append('colorImage4', black_crushed_velvet);
+      data.append('image', grey_linen);
+      data.append('image', grey_seude);
+      data.append('image', charcoal_chenille);
+      data.append('image', black_crushed_velvet);
 
       try {
         await axios(`/api/products/image`, {
@@ -220,10 +220,10 @@ const InputPage = () => {
 
     const getStorage = async () => {
       const data = new FormData();
-      data.append('storageImage1', grey_linen_storage);
-      data.append('storageImage2', grey_seude_storage);
-      data.append('storageImage3', charcoal_chenille_storage);
-      data.append('storageImage4', black_crushed_velvet_storage);
+      data.append('image', grey_linen_storage);
+      data.append('image', grey_seude_storage);
+      data.append('image', charcoal_chenille_storage);
+      data.append('image', black_crushed_velvet_storage);
 
       try {
         await axios(`/api/products/image`, {
@@ -239,10 +239,10 @@ const InputPage = () => {
     };
     const getStorage1 = async () => {
       const data = new FormData();
-      data.append('storageImage1', grey_linen_storage1);
-      data.append('storageImage2', grey_seude_storage1);
-      data.append('storageImage3', charcoal_chenille_storage1);
-      data.append('storageImage4', black_crushed_velvet_storage1);
+      data.append('image', grey_linen_storage1);
+      data.append('image', grey_seude_storage1);
+      data.append('image', charcoal_chenille_storage1);
+      data.append('image', black_crushed_velvet_storage1);
 
       try {
         await axios(`/api/products/image`, {
@@ -258,10 +258,10 @@ const InputPage = () => {
     };
     const getStorage2 = async () => {
       const data = new FormData();
-      data.append('storageImage1', grey_linen_storage2);
-      data.append('storageImage2', grey_seude_storage2);
-      data.append('storageImage3', charcoal_chenille_storage2);
-      data.append('storageImage4', black_crushed_velvet_storage2);
+      data.append('image', grey_linen_storage2);
+      data.append('image', grey_seude_storage2);
+      data.append('image', charcoal_chenille_storage2);
+      data.append('image', black_crushed_velvet_storage2);
 
       try {
         await axios(`/api/products/image`, {
@@ -277,10 +277,10 @@ const InputPage = () => {
     };
     const getStorage3 = async () => {
       const data = new FormData();
-      data.append('storageImage1', grey_linen_storage3);
-      data.append('storageImage2', grey_seude_storage3);
-      data.append('storageImage3', charcoal_chenille_storage3);
-      data.append('storageImage4', black_crushed_velvet_storage3);
+      data.append('image', grey_linen_storage3);
+      data.append('image', grey_seude_storage3);
+      data.append('image', charcoal_chenille_storage3);
+      data.append('image', black_crushed_velvet_storage3);
 
       try {
         await axios(`/api/products/image`, {
@@ -297,10 +297,10 @@ const InputPage = () => {
 
     const getMattress = async () => {
       const data = new FormData();
-      data.append('mattressImage1', grey_linen_mattress);
-      data.append('mattressImage2', grey_seude_mattress);
-      data.append('mattressImage3', charcoal_chenille_mattress);
-      data.append('mattressImage4', black_crushed_velvet_mattress);
+      data.append('image', grey_linen_mattress);
+      data.append('image', grey_seude_mattress);
+      data.append('image', charcoal_chenille_mattress);
+      data.append('image', black_crushed_velvet_mattress);
 
       try {
         await axios(`/api/products/image`, {
@@ -315,10 +315,10 @@ const InputPage = () => {
 
     const getHeadboard = async () => {
       const data = new FormData();
-      data.append('headboardImage1', grey_linen_headboard);
-      data.append('headboardImage2', grey_seude_headboard);
-      data.append('headboardImage3', charcoal_chenille_headboard);
-      data.append('headboardImage4', black_crushed_velvet_headboard);
+      data.append('image', grey_linen_headboard);
+      data.append('image', grey_seude_headboard);
+      data.append('image', charcoal_chenille_headboard);
+      data.append('image', black_crushed_velvet_headboard);
 
       try {
         await axios(`/api/products/image`, {
@@ -332,10 +332,10 @@ const InputPage = () => {
     };
     const getHeadboard1 = async () => {
       const data = new FormData();
-      data.append('headboardImage1', grey_linen_headboard1);
-      data.append('headboardImage2', grey_seude_headboard1);
-      data.append('headboardImage3', charcoal_chenille_headboard1);
-      data.append('headboardImage4', black_crushed_velvet_headboard1);
+      data.append('image', grey_linen_headboard1);
+      data.append('image', grey_seude_headboard1);
+      data.append('image', charcoal_chenille_headboard1);
+      data.append('image', black_crushed_velvet_headboard1);
 
       try {
         await axios(`/api/products/image`, {
@@ -349,10 +349,10 @@ const InputPage = () => {
     };
     const getHeadboard2 = async () => {
       const data = new FormData();
-      data.append('headboardImage1', grey_linen_headboard2);
-      data.append('headboardImage2', grey_seude_headboard2);
-      data.append('headboardImage3', charcoal_chenille_headboard2);
-      data.append('headboardImage4', black_crushed_velvet_headboard2);
+      data.append('image', grey_linen_headboard2);
+      data.append('image', grey_seude_headboard2);
+      data.append('image', charcoal_chenille_headboard2);
+      data.append('image', black_crushed_velvet_headboard2);
 
       try {
         await axios(`/api/products/image`, {
@@ -366,10 +366,10 @@ const InputPage = () => {
     };
     const getHeadboard3 = async () => {
       const data = new FormData();
-      data.append('headboardImage1', grey_linen_headboard3);
-      data.append('headboardImage2', grey_seude_headboard3);
-      data.append('headboardImage3', charcoal_chenille_headboard3);
-      data.append('headboardImage4', black_crushed_velvet_headboard3);
+      data.append('image', grey_linen_headboard3);
+      data.append('image', grey_seude_headboard3);
+      data.append('image', charcoal_chenille_headboard3);
+      data.append('image', black_crushed_velvet_headboard3);
 
       try {
         await axios(`/api/products/image`, {
@@ -384,10 +384,10 @@ const InputPage = () => {
 
     const getFeet = async () => {
       const data = new FormData();
-      data.append('feetImage1', grey_linen_feet);
-      data.append('feetImage2', grey_seude_feet);
-      data.append('feetImage3', charcoal_chenille_feet);
-      data.append('feetImage4', black_crushed_velvet_feet);
+      data.append('image', grey_linen_feet);
+      data.append('image', grey_seude_feet);
+      data.append('image', charcoal_chenille_feet);
+      data.append('image', black_crushed_velvet_feet);
 
       try {
         await axios(`/api/products/image`, {

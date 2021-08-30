@@ -1,48 +1,38 @@
-import multer from 'multer';
+import upload from '../../../../utils/multer';
+import { uploads } from '../../../../utils/cloudinary';
 import fs from 'fs';
-import timestamp from 'time-stamp';
-import formidable from 'formidable-serverless';
-import slugify from 'slugify';
-import path from 'path';
+import nextConnect from 'next-connect';
+
+const apiRoute = nextConnect({
+  onError(error, req, res) {
+    res.status(501).json({ error: `Sorry something Happened! ${error.message}` });
+  },
+  onNoMatch(req, res) {
+    res.status(405).json({ error: `Method '${req.method}' Not Allowed` });
+  },
+});
+
+apiRoute.use(upload.array('image'));
+
+apiRoute.post(async (req, res) => {
+  const uploader = async (path) => await uploads(path, 'Images');
+  const urls = [];
+  const files = req.files;
+
+  for (const file of files) {
+    const { path } = file;
+    const newPath = await uploader(path);
+    urls.push(newPath.url);
+    fs.unlinkSync(path);
+  }
+
+  res.status(200).json(urls);
+});
+
+export default apiRoute;
 
 export const config = {
   api: {
     bodyParser: false,
   },
-};
-
-export default async (req, res) => {
-  const time = timestamp('DD-MM-YYYY');
-
-  fs.mkdir(`./public`, { recursive: true }, function (err) {
-    return console.log(err);
-  });
-
-  let paths = '';
-  let arrays = [];
-
-  await new Promise((resolve, reject) => {
-    const form = formidable({
-      multiples: true,
-      uploadDir: `./public`,
-    });
-
-    //KEEP EXTENSION
-    form.keepExtensions = true;
-    form.keepFileName = true;
-
-    form.on('fileBegin', function (name, file) {
-      console.log(slugify(file.name));
-      file.path = path.join(`public`, slugify(file.name));
-      paths = `${process.env.BASE_URL}/${slugify(file.name)}`;
-      arrays.push(paths);
-    });
-
-    form.parse(req, (err, fields, files) => {
-      if (err) return reject(err);
-      resolve(files);
-    });
-  });
-
-  res.status(200).json(arrays);
 };
