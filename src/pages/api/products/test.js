@@ -26,7 +26,10 @@ apiRoute.post(async (req, res) => {
     fs.unlinkSync(path);
   }
 
-  res.status(200).json(urls);
+  res.status(200).json({
+    message: 'Images Uploaded successfully',
+    data: urls,
+  });
 });
 
 export default apiRoute;
