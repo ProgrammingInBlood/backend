@@ -61,6 +61,7 @@ export default function ButtonPage() {
                     <p>Size: {product.size}</p>
                     <p>Price : {product.price}</p>
                     <p>description: {product.description}</p>
+                    <p>category: {product.category}</p>
                     <p>timestamp: {product.timestamp}</p>
                     <div style={{ display: 'flex', justifyContent: 'space-between' }}>
                       <Button

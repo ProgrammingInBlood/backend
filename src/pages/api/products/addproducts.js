@@ -7,8 +7,18 @@ import timestamp from 'time-stamp';
 dbConnect();
 export default async function handler(req, res) {
   if (req.method === 'POST') {
-    const { product_name, description, size, price, mattresses_images, feet_images, images, force_replace } = req.body;
-    console.log(product_name);
+    const {
+      product_name,
+      description,
+      size,
+      price,
+      mattresses_images,
+      feet_images,
+      images,
+      force_replace,
+      category,
+    } = req.body;
+
     //CHECKING IF ANY FIELD IS EMPTY
 
     if (!product_name || !size || !price) {
@@ -25,6 +35,7 @@ export default async function handler(req, res) {
           {
             product_name: product_name,
             description: description,
+            category: category,
             size: size,
             price: price,
             images: images,
@@ -33,6 +44,8 @@ export default async function handler(req, res) {
             timestamp: timestamp('YYYY/MM/DDTHH:mm:ss'),
           },
         ];
+
+        console.log(data);
 
         try {
           await Products.create(data);

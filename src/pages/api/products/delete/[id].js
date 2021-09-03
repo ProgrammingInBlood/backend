@@ -1,5 +1,4 @@
 //DELETING PRODUCTS BY ID
-
 import Products from '../../../../../schema/Beds';
 import dbConnect from '../../../../../utils/DBconnect';
 

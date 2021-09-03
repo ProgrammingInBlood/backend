@@ -11,6 +11,7 @@ import Layout from 'Layouts';
 import { Button } from '@paljs/ui/Button';
 import { Toastr, ToastrRef, ToastrProps } from '@paljs/ui/Toastr';
 import axios from 'axios';
+import { SelectStyled } from 'pages/forms/select';
 
 const options = [
   { value: 'chocolate', label: 'Chocolate' },
@@ -57,6 +58,7 @@ const InputPage = () => {
   const [productName, setProductName] = useState('');
   const [productDescription, setProductDescription] = useState('');
   const [base_price, setbase_price] = useState('');
+  const [category, setCategory] = useState('');
 
   //Next API For Beds start type
 
@@ -424,13 +426,9 @@ const InputPage = () => {
       const feet = await feet_images;
       const colors = await base_colors_images;
 
-      console.log(storage);
-      console.log(matt);
-      console.log(head);
-      console.log(feet);
-      console.log(colors);
       const payload = {
         force_replace: checkbox[1],
+        category: category,
         product_name: productName,
         description: productDescription,
         size: size,
@@ -530,14 +528,17 @@ const InputPage = () => {
     };
 
     sendData();
-    // } else {
-    //   setCount(count + 1);
-    //   toastrRef.current?.add('ERROR', 'Please Input All The Fields And Try Again', {
-    //     ...toasterData,
-    //     status: 'Danger',
-    //   });
-    // }
   }
+
+  //SELECT C
+
+  const statusOption = [
+    { value: 'Linen Fabric DivanBeds', label: 'Linen Fabric DivanBeds' },
+    { value: 'Velvet Fabric Divan Beds', label: 'Velvet Fabric Divan Beds' },
+    { value: 'Suede Fabric Divan Beds', label: 'Suede Fabric Divan Beds' },
+    { value: 'Low Divan Beds', label: 'Low Divan Beds' },
+    { value: 'Leather Divan Beds', label: 'Leather Divan Beds' },
+  ];
 
   return (
     <Layout title="Input">
@@ -554,6 +555,14 @@ const InputPage = () => {
           <Card>
             <header>Product Type</header>
             <CardBody>
+              <Row style={{ height: 300, zIndex: 9999 }}>
+                <Col breakPoint={{ xs: 12, md: 2 }}>
+                  <header>Category</header>
+                </Col>
+                <Col breakPoint={{ xs: 12, md: 10 }}>
+                  <Select options={statusOption} placeholder="Select Category" onChange={(e) => setCategory(e.value)} />
+                </Col>
+              </Row>
               <Row>
                 <Col breakPoint={{ xs: 12, md: 2 }}>
                   <header>Product Name</header>
